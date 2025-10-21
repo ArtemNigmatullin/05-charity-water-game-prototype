@@ -1,13 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Game</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Charity Water Game</title>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-    <h1>Welcome to the Charity Water Game Prototype</h1>
-    <script src="script.js"></script>
+  <header class="app-header">
+    <div class="brand">
+      <span class="jerry"></span>
+      <span class="brand-text">charity: water</span>
+    </div>
+    <button id="resetBtn" class="btn btn-ghost" aria-label="Reset game">Reset</button>
+  </header>
+
+  <main class="app">
+    <!-- keep original heading (from your starter) but style it small -->
+    <h1 class="sr-title">Welcome to the Charity Water Game Prototype</h1>
+
+    <!-- START SCREEN -->
+    <section id="startScreen" class="card start">
+      <h2 class="title">FILL THE WELL</h2>
+      <p class="subtitle">Answer questions to fill the well and bring clean water to all.</p>
+      <button id="startBtn" class="btn btn-primary">START QUIZ</button>
+      <p id="bestStats" class="muted"></p>
+    </section>
+
+    <!-- QUIZ SCREEN -->
+    <section id="quizScreen" class="card quiz hidden" aria-live="polite">
+      <div class="hud">
+        <div class="meter">
+          <div id="meterFill" class="meter-fill"></div>
+          <span id="meterPct" class="meter-label">0%</span>
+        </div>
+        <div class="hud-right">
+          <span id="streak" class="badge">🔥 x0</span>
+          <span id="timer" class="badge">⏱ 15</span>
+        </div>
+      </div>
+
+      <div class="qhead">
+        <span id="qCount">Q 1/10</span>
+      </div>
+
+      <h3 id="question" class="question">Loading…</h3>
+
+      <div id="answers" class="answers" role="group" aria-label="Answer choices">
+        <!-- buttons injected here -->
+      </div>
+
+      <div class="actions">
+        <button id="nextBtn" class="btn btn-secondary" disabled>Next</button>
+        <button id="learnBtn" class="btn btn-ghost" disabled>Learn more</button>
+      </div>
+    </section>
+
+    <!-- FEEDBACK TOAST -->
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+    <!-- RESULTS SCREEN -->
+    <section id="resultScreen" class="card result hidden">
+      <div class="result-left">
+        <h2 id="resultTitle">Well filled!</h2>
+        <p id="resultStats" class="muted"></p>
+        <div class="result-actions">
+          <button id="playAgainBtn" class="btn btn-primary">PLAY AGAIN</button>
+          <a class="btn btn-secondary" href="https://www.charitywater.org/" target="_blank" rel="noopener">LEARN MORE</a>
+        </div>
+      </div>
+      <div class="result-right">
+        <div class="result-badge">
+          <span class="jerry big"></span>
+          <p id="wellPctBig" class="well-pct">0%</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- obstacle container + confetti -->
+  <div id="obstacleLayer" class="obstacle-layer"></div>
+  <div id="confettiLayer" class="confetti-layer"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
